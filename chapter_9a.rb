@@ -4,6 +4,7 @@ MiniTest::Unit.runner.reporters << MiniTest::Reporters::SpecReporter.new
 require 'minitest/autorun'
 
 ############## Page 201 ##############
+# Wheel responds to one incoming diameter
 class Wheel
   attr_reader :rim, :tire
   def initialize(rim, tire)
@@ -17,6 +18,7 @@ class Wheel
 # ...
 end
 
+# Gear responds to two incoming messages, gear_inches and ratio.
 class Gear
   attr_reader :chainring, :cog, :rim, :tire
   def initialize(args)
@@ -27,6 +29,7 @@ class Gear
   end
 
   def gear_inches
+    # diamter is outgoing messages for Gear
     ratio * Wheel.new(rim, tire).diameter
   end
 
@@ -37,6 +40,7 @@ class Gear
 end
 
 ############## Page 203 ##############
+# every incoming message is part of an object’s public interface and so must be tested
 class WheelTest < MiniTest::Unit::TestCase
 
   def test_calculates_diameter
